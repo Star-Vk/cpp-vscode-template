@@ -34,6 +34,8 @@ All source files live under `src/`. Public project headers for this template liv
 - VSCode, optional
 - CMake Tools extension, optional but recommended
 
+CMakePresets.json is tracked by the template, while CMakeUserPresets.json is intended for local user-specific settings and is ignored by Git.
+
 ## Command Line Build
 
 Debug build:

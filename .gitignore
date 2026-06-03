@@ -1,5 +1,6 @@
 build/
 .idea/
+CMakeUserPresets.json
 
 *.exe
 *.out
