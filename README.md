@@ -30,13 +30,56 @@
 
 所有源码文件都放在 `src/` 目录下。本模板的头文件放在 `src/include/` 目录下。`src/lib/` 是预留目录，目前只包含 `.gitkeep`，用于让 Git 能够追踪这个空目录。
 
-## 环境要求
+## 最小使用环境
+
+在一台新电脑上使用这个模板，至少需要安装：
 
 - CMake 3.20+
-- 支持 C++20 的编译器
-- Ninja，推荐安装，但不是绝对必须
-- VSCode，可选
-- CMake Tools 扩展，可选但推荐
+- 支持 C++20 的 C++ 编译器
+- Ninja，推荐安装；本模板的 `CMakePresets.json` 默认使用 Ninja
+- VSCode，可选；如果想使用仓库自带的 VSCode 配置和快捷任务，推荐安装
+- Git，可选；如果要 `git clone` 这个仓库则需要安装
+
+常见平台的最小安装建议：
+
+- Ubuntu / Debian：
+
+```bash
+sudo apt update
+sudo apt install build-essential cmake ninja-build git
+```
+
+- macOS：
+
+```bash
+xcode-select --install
+brew install cmake ninja git
+```
+
+- Windows：
+  - 安装 Visual Studio Build Tools，并选择 Desktop development with C++。
+  - 安装 CMake。
+  - 安装 Ninja。
+  - 确保 `cmake` 和 `ninja` 可以在终端中直接运行。
+
+安装完成后可以用下面命令检查：
+
+```bash
+cmake --version
+ninja --version
+```
+
+Linux/macOS 可以再检查：
+
+```bash
+c++ --version
+```
+
+Windows 可以在 Developer PowerShell 或 Developer Command Prompt 中检查：
+
+```powershell
+cl
+```
 
 `CMakePresets.json` 是模板仓库会提交的通用配置；`CMakeUserPresets.json` 用于用户本地的个性化配置，并已被 Git 忽略。
 
@@ -110,6 +153,20 @@ Windows PowerShell：
 4. 使用 CMake Tools 执行 Configure、Build 和 Run。
 
 仓库中的 `.vscode/settings.json` 会让 CMake Tools 使用 CMake presets，并在打开文件夹时自动配置项目。
+
+推荐安装的 VSCode 扩展已经写在 `.vscode/extensions.json` 中：
+
+- `ms-vscode.cmake-tools`：CMake Tools，用于选择 preset、配置、构建和运行。
+- `ms-vscode.cpptools`：C/C++，提供 IntelliSense、调试和 C++ 语言支持。
+- `twxs.cmake`：CMake 语法高亮和编辑辅助。
+
+如果 VSCode 没有自动提示，也可以打开扩展面板手动搜索安装，或使用命令行：
+
+```bash
+code --install-extension ms-vscode.cmake-tools
+code --install-extension ms-vscode.cpptools
+code --install-extension twxs.cmake
+```
 
 ## VSCode Tasks
 
