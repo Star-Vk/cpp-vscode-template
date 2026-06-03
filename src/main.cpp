@@ -4,7 +4,7 @@
 
 void print_hello()
 {
-    std::cout << "Hello from C++ CMake template!" << '\n';
+    std::cout << "你好世界！！！" << '\n';
 }
 
 int main()

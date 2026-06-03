@@ -11,11 +11,15 @@
 │       └── cmake.yml
 ├── .vscode
 │   ├── extensions.json
-│   └── settings.json
+│   ├── settings.json
+│   └── tasks.json
 ├── CMakeLists.txt
 ├── CMakePresets.json
 ├── README.md
 ├── .gitignore
+├── scripts
+│   ├── run.ps1
+│   └── run.sh
 └── src
     ├── main.cpp
     ├── include
@@ -69,6 +73,28 @@ cmake --build build/debug
 ./build/debug/bin/CppTemplate
 ```
 
+## 一键构建并运行
+
+本模板提供辅助脚本，可以一条命令完成 configure、build 和 run。
+
+Linux/macOS：
+
+```bash
+./scripts/run.sh
+./scripts/run.sh debug
+./scripts/run.sh release
+```
+
+Windows PowerShell：
+
+```powershell
+.\scripts\run.ps1
+.\scripts\run.ps1 debug
+.\scripts\run.ps1 release
+```
+
+脚本会自动从 `CMakeLists.txt` 读取 CMake 项目名。所以如果你把项目名从 `CppTemplate` 改成自己的名字，运行脚本仍然应该可以继续找到对应的可执行文件。
+
 ## 添加源码文件
 
 - 新的 `.cpp` 文件放到 `src/` 或 `src/` 的子目录下。
@@ -84,6 +110,36 @@ cmake --build build/debug
 4. 使用 CMake Tools 执行 Configure、Build 和 Run。
 
 仓库中的 `.vscode/settings.json` 会让 CMake Tools 使用 CMake presets，并在打开文件夹时自动配置项目。
+
+## VSCode Tasks
+
+本模板包含 `.vscode/tasks.json`，可以在 VSCode 中快速执行一键构建运行脚本。
+
+- 按 `Ctrl + Shift + B` 会默认执行 `Project: Run Debug`，完成 Debug 的 configure、build 和 run。
+- 使用 `Ctrl + Shift + P` -> `Tasks: Run Task` -> `Project: Run Release` 可以构建并运行 Release 可执行文件。
+
+如果想绑定自定义快捷键，可以打开 `Preferences: Open Keyboard Shortcuts (JSON)`，添加用户级快捷键配置：
+
+```json
+{
+  "key": "ctrl+alt+r",
+  "command": "workbench.action.tasks.runTask",
+  "args": "Project: Run Debug"
+}
+```
+
+如果你把 CMake 项目名从 `CppTemplate` 改成自己的项目名，脚本会自动读取新项目名；如果你手动修改 `.vscode/tasks.json` 去直接运行可执行文件，也要同步更新里面的可执行文件路径。
+
+例如项目名改成：
+
+```cmake
+project(study_demo03
+    VERSION 0.1.0
+    LANGUAGES CXX
+)
+```
+
+运行脚本会自动查找 `study_demo03` 对应的可执行文件。
 
 ## 作为 GitHub Template 使用
 
