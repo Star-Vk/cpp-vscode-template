@@ -57,10 +57,12 @@ brew install cmake ninja git
 ```
 
 - Windows：
-  - 安装 Visual Studio Build Tools，并选择 Desktop development with C++。
+  - 安装 Visual Studio Build Tools 2022，并选择 Desktop development with C++。
   - 安装 CMake。
   - 安装 Ninja。
+  - 安装 Git 和 VSCode，按需选择。
   - 确保 `cmake` 和 `ninja` 可以在终端中直接运行。
+  - 如果使用 MSVC 编译器，推荐从 Developer PowerShell for VS 2022 或 Developer Command Prompt for VS 2022 中打开项目。
 
 安装完成后可以用下面命令检查：
 
@@ -80,6 +82,14 @@ Windows 可以在 Developer PowerShell 或 Developer Command Prompt 中检查：
 ```powershell
 cl
 ```
+
+如果 `cl` 提示找不到命令，说明当前终端没有加载 MSVC 编译环境。可以打开 Developer PowerShell for VS 2022，进入项目目录后运行：
+
+```powershell
+code .
+```
+
+这样 VSCode 继承的终端环境中就能找到 MSVC 编译器，使用 Ninja preset 时也更稳。
 
 `CMakePresets.json` 是模板仓库会提交的通用配置；`CMakeUserPresets.json` 用于用户本地的个性化配置，并已被 Git 忽略。
 
