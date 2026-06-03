@@ -1,0 +1,13 @@
+build/
+.idea/
+tmp/
+.marscode/
+*.exe
+*.out
+*.o
+*.obj
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
