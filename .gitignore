@@ -1,7 +1,6 @@
 build/
 .idea/
-tmp/
-.marscode/
+
 *.exe
 *.out
 *.o

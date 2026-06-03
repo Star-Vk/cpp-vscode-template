@@ -1,11 +1,17 @@
 # CppTemplate
 
-一个干净、通用、可扩展的 C++20 CMake 项目模板，适合 VSCode、CMake Tools 和命令行使用。
+A minimal VSCode + CMake + C++20 project template.
 
-## 项目结构
+## Project Structure
 
 ```text
 .
+├── .github
+│   └── workflows
+│       └── cmake.yml
+├── .vscode
+│   ├── extensions.json
+│   └── settings.json
 ├── CMakeLists.txt
 ├── CMakePresets.json
 ├── README.md
@@ -18,43 +24,42 @@
         └── .gitkeep
 ```
 
-所有源码都放在 `src/` 目录下，头文件放在 `src/include/` 目录下。`src/lib/` 是预留目录，当前仅保留 `.gitkeep` 方便 Git 追踪空目录。
+All source files live under `src/`. Public project headers for this template live under `src/include/`. The `src/lib/` directory is reserved for future source organization and contains `.gitkeep` so Git can track it while empty.
 
-## 配置和构建
+## Requirements
 
-推荐使用 CMake preset：
+- CMake 3.20+
+- A C++20-capable compiler
+- Ninja, recommended but not strictly required
+- VSCode, optional
+- CMake Tools extension, optional but recommended
+
+## Command Line Build
+
+Debug build:
 
 ```bash
 cmake --preset debug
 cmake --build --preset debug
+./build/debug/bin/CppTemplate
 ```
 
-Release 构建：
+Release build:
 
 ```bash
 cmake --preset release
 cmake --build --preset release
+./build/release/bin/CppTemplate
 ```
 
-构建产物会输出到 `build/` 目录内部，不会写到源码目录。Debug 可执行文件位于：
+Build outputs stay inside the selected build directory:
 
 ```text
 build/debug/bin/CppTemplate
-```
-
-Release 可执行文件位于：
-
-```text
 build/release/bin/CppTemplate
 ```
 
-运行示例：
-
-```bash
-./build/debug/bin/CppTemplate
-```
-
-如果环境没有安装 Ninja，可以使用备用方式：
+If Ninja is not installed, use a generator selected by your local CMake environment:
 
 ```bash
 cmake -S . -B build/debug
@@ -62,8 +67,27 @@ cmake --build build/debug
 ./build/debug/bin/CppTemplate
 ```
 
-## 源文件管理
+## Adding Source Files
 
-当前模板为了方便新手开发，使用 `GLOB_RECURSE CONFIGURE_DEPENDS` 自动收集 `src/` 下的 `.cpp` 文件。这样以后新增 `.cpp` 文件时，通常不需要手动修改 `CMakeLists.txt`。
+- Put new `.cpp` files in `src/` or a subdirectory of `src/`.
+- Put new header files in `src/include/`.
+- This template automatically collects `src/**/*.cpp` with `file(GLOB_RECURSE ... CONFIGURE_DEPENDS)` to keep the beginner workflow simple.
+- For larger projects, consider replacing the glob with explicit `target_sources()` entries for clearer source ownership and build behavior.
 
-高级用户或大型工程可以改成手动 `target_sources()` 管理源文件，以获得更明确的构建配置和更稳定的工程维护方式。
+## Using VSCode
+
+1. Open this project folder in VSCode.
+2. Install the recommended extensions when prompted.
+3. Select the `debug` or `release` CMake preset.
+4. Use CMake Tools to Configure, Build, and Run.
+
+The included `.vscode/settings.json` tells CMake Tools to use CMake presets and configure when the folder opens.
+
+## Using As A GitHub Template
+
+To make this repository reusable from GitHub:
+
+1. Open the repository on GitHub.
+2. Go to Settings.
+3. Enable Template repository.
+4. Use the Use this template button to create new projects from this template.

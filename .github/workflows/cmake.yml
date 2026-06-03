@@ -1,0 +1,34 @@
+name: CMake
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install Ninja
+        run: sudo apt-get update && sudo apt-get install -y ninja-build
+
+      - name: Configure debug
+        run: cmake --preset debug
+
+      - name: Build debug
+        run: cmake --build --preset debug
+
+      - name: Run debug
+        run: ./build/debug/bin/CppTemplate
+
+      - name: Configure release
+        run: cmake --preset release
+
+      - name: Build release
+        run: cmake --build --preset release
+
+      - name: Run release
+        run: ./build/release/bin/CppTemplate

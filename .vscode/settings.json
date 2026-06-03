@@ -1,19 +1,4 @@
 {
-    "ROS2.distro": "humble",
-    "python.autoComplete.extraPaths": [
-        "/home/starvk/tb3_ws/build/turtlebot3_teleop",
-        "/home/starvk/tb3_ws/install/turtlebot3_teleop/lib/python3.10/site-packages",
-        "/home/starvk/tb3_ws/build/turtlebot3_example",
-        "/home/starvk/tb3_ws/install/turtlebot3_example/lib/python3.10/site-packages",
-        "/opt/ros/humble/lib/python3.10/site-packages",
-        "/opt/ros/humble/local/lib/python3.10/dist-packages"
-    ],
-    "python.analysis.extraPaths": [
-        "/home/starvk/tb3_ws/build/turtlebot3_teleop",
-        "/home/starvk/tb3_ws/install/turtlebot3_teleop/lib/python3.10/site-packages",
-        "/home/starvk/tb3_ws/build/turtlebot3_example",
-        "/home/starvk/tb3_ws/install/turtlebot3_example/lib/python3.10/site-packages",
-        "/opt/ros/humble/lib/python3.10/site-packages",
-        "/opt/ros/humble/local/lib/python3.10/dist-packages"
-    ]
+  "cmake.useCMakePresets": "always",
+  "cmake.configureOnOpen": true
 }
